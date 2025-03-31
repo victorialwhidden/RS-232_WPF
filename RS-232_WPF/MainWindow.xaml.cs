@@ -35,14 +35,16 @@ namespace RS_232_WPF
         {
             //Autopopulate COM lines
             InitializeComponent();
+
+            //SetUp SP
+            mySP = new SerialPort();
+
             foreach (string s in SerialPort.GetPortNames())
             {
                 cbx_ComPorts.Items.Add(s);
             }
             cbx_ComPorts.SelectedIndex = 0;
 
-            //SetUp SP
-            mySP = new SerialPort();
 
             //Mannual setup
             mySP.PortName = cbx_ComPorts.SelectedItem.ToString();
@@ -72,8 +74,6 @@ namespace RS_232_WPF
 
                 //using the delegate beginInvoke constructor
                 Dispatcher.BeginInvoke(new msgDelegate(outputMessage), msgRecieved);
-
-
 
             }
             catch (IOException ex) 

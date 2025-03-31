@@ -12,7 +12,7 @@
             <ColumnDefinition Width="93*"/>
         </Grid.ColumnDefinitions>
         <ComboBox x:Name="cbx_ComPorts" HorizontalAlignment="Left" Height="26" Margin="46,88,0,0" VerticalAlignment="Top" Width="218" IsDropDownOpen="True" SelectionChanged="cbx_ComPorts_SelectionChanged" Grid.ColumnSpan="2"/>
-        <ListBox x:Name="lstB_Messages" HorizontalAlignment="Left" Height="211" Margin="46,134,0,0" VerticalAlignment="Top" Width="218" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2"/>
+        <ListBox x:Name="lstB_Messages" HorizontalAlignment="Left" Height="211" Margin="46,134,0,0" VerticalAlignment="Top" Width="218" Grid.ColumnSpan="2"/>
         <Button x:Name="btn_Clear" Content="CLEAR" HorizontalAlignment="Left" Height="39" Margin="46,360,0,0" VerticalAlignment="Top" Width="218" FontWeight="Bold" Click="btn_Clear_Click" Grid.ColumnSpan="2">
             <Button.Effect>
                 <DropShadowEffect/>
