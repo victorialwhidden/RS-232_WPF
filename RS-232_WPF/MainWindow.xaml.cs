@@ -24,7 +24,6 @@ namespace RS_232_WPF
     
     public partial class MainWindow : Window
     {
-        private double baudrate;
         private SerialPort mySP;
         private string msgRecieved;
         private string msgSent;
