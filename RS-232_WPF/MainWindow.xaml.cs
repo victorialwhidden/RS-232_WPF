@@ -69,12 +69,12 @@ namespace RS_232_WPF
         private void mySP_DataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
             try
-            {
-                msgRecieved = mySP.ReadLine();
-
-                //using the delegate beginInvoke constructor
-                Dispatcher.BeginInvoke(new msgDelegate(outputMessage), msgRecieved);
-
+            {   if (mySP.BytesToRead > 0)
+                {
+                    msgRecieved = mySP.ReadLine();
+                    //using the delegate beginInvoke constructor
+                    Dispatcher.BeginInvoke(new msgDelegate(outputMessage), msgRecieved);
+                }
             }
             catch (IOException ex) 
             {
@@ -84,9 +84,9 @@ namespace RS_232_WPF
 
         private void outputMessage(string msg)
         {
-            lstB_Messages.Items.Add(msg);
+            lstB_Messages.Items.Insert(0, msg);
             //Ensure the listBox stays up to date with new items
-            lstB_Messages.SelectedItem = lstB_Messages.Items.Count - 1;
+            lstB_Messages.SelectedIndex = 0;
         }
 
 
@@ -131,7 +131,8 @@ namespace RS_232_WPF
         private void btn_OpenSP_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
+            { 
+                
                 if (!mySP.IsOpen)
                 {
                     mySP.Open();
@@ -156,17 +157,12 @@ namespace RS_232_WPF
             {
                 if (mySP.IsOpen)
                 {
-
                     mySP.Close();
                     Thread.Sleep(1000);
                     btn_OpenSP.IsEnabled = true;
                     btn_CloseSP.IsEnabled = false;
                 }
 
-                if (mySP != null)
-                {
-                    mySP.Dispose();
-                }
             }
             catch (IOException ex)
             {
